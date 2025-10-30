@@ -2,6 +2,7 @@
 #![allow(deprecated)]
 use anchor_lang::prelude::*;
 
+mod errors;
 mod instructions;
 mod state;
 pub use instructions::*;
@@ -18,5 +19,9 @@ pub mod aegisvault {
 
     pub fn initialize_user(ctx: Context<InitializeUser>) -> Result<()> {
         init_user_handler(ctx)
+    }
+
+    pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
+        deposit_handler(ctx, amount)
     }
 }
