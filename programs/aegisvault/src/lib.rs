@@ -2,6 +2,9 @@
 #![allow(deprecated)]
 use anchor_lang::prelude::*;
 
+mod instructions;
+mod state;
+
 declare_id!("AYMZZjv95ipSXKcnuENKRdJnmGRgRmcNvADpaeu9ujzY");
 
 #[program]
