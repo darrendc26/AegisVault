@@ -24,10 +24,16 @@ pub fn init_vault_handler(ctx: Context<InitializeVault>) -> Result<()> {
     let vault = &mut ctx.accounts.vault;
     vault.asset_mint = ctx.accounts.asset_mint.key();
     vault.collateral_mint = ctx.accounts.collateral_mint.key();
-    vault.total_deposits = 0;
-    vault.total_borrowed = 0;
-    vault.total_collateral = 0;
-    vault.interest_rate = 750;
+    vault.total_wsol_deposits = 0;
+    vault.total_wsol_borrowed = 0;
+    vault.total_wsol_collateral = 0;
+
+    vault.total_usdc_deposits = 0;
+    vault.total_usdc_borrowed = 0;
+    vault.total_usdc_collateral = 0;
+
+    vault.interest_rate = 750; // 7.5%
     vault.bump = ctx.bumps.vault;
+
     Ok(())
 }

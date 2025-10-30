@@ -20,10 +20,15 @@ pub struct InitializeUser<'info> {
 pub fn init_user_handler(ctx: Context<InitializeUser>) -> Result<()> {
     let user_account = &mut ctx.accounts.user_account;
     user_account.user = ctx.accounts.user.key();
-    user_account.total_deposits = 0;
-    user_account.total_locked = 0;
-    user_account.total_borrowed = 0;
-    user_account.last_updated = Clock::get().unwrap().unix_timestamp;
+    user_account.total_wsol_deposits = 0;
+    user_account.total_wsol_locked = 0;
+    user_account.total_wsol_borrowed = 0;
+
+    user_account.total_usdc_deposits = 0;
+    user_account.total_usdc_locked = 0;
+    user_account.total_usdc_borrowed = 0;
+
+    user_account.last_updated = Clock::get()?.unix_timestamp;
     user_account.bump = ctx.bumps.user_account;
     Ok(())
 }

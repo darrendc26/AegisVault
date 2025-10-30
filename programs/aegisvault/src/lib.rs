@@ -21,7 +21,10 @@ pub mod aegisvault {
         init_user_handler(ctx)
     }
 
-    pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
-        deposit_handler(ctx, amount)
+    pub fn deposit_wsol(ctx: Context<DepositWsol>, amount: u64) -> Result<()> {
+        deposit_wsol_handler(ctx, amount)
+    }
+    pub fn deposit_usdc(ctx: Context<DepositUsdc>, amount: u64) -> Result<()> {
+        deposit_usdc_handler(ctx, amount)
     }
 }
