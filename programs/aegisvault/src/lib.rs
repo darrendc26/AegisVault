@@ -27,4 +27,12 @@ pub mod aegisvault {
     pub fn deposit_usdc(ctx: Context<DepositUsdc>, amount: u64) -> Result<()> {
         deposit_usdc_handler(ctx, amount)
     }
+
+    pub fn withdraw_wsol(ctx: Context<WithdrawWsol>, amount: u64) -> Result<()> {
+        withdraw_wsol_handler(ctx, amount)
+    }
+
+    pub fn withdraw_usdc(ctx: Context<WithdrawUsdc>, amount: u64) -> Result<()> {
+        withdraw_usdc_handler(ctx, amount)
+    }
 }

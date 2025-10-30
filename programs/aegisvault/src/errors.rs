@@ -16,4 +16,7 @@ pub enum ErrorCode {
 
     #[msg("Invalid Asset")]
     InvalidAsset,
+
+    #[msg("Invalid Amount")]
+    InvalidAmount,
 }
