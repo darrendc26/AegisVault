@@ -16,9 +16,7 @@ pub mod aegisvault {
         init_vault_handler(ctx)
     }
 
-    // pub fn initialize_user(
-    //     ctx: Context<instructions::initialize_user::InitializeUser>,
-    // ) -> Result<()> {
-    //     instructions::initialize_user::init_user_handler(ctx)
-    // }
+    pub fn initialize_user(ctx: Context<InitializeUser>) -> Result<()> {
+        init_user_handler(ctx)
+    }
 }

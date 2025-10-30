@@ -7,4 +7,5 @@ pub mod repay;
 pub mod update_interest;
 pub mod withdraw;
 
+pub use initialize_user::*;
 pub use initialize_vault::*;

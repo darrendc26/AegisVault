@@ -27,7 +27,7 @@ pub fn init_vault_handler(ctx: Context<InitializeVault>) -> Result<()> {
     vault.total_deposits = 0;
     vault.total_borrowed = 0;
     vault.total_collateral = 0;
-    vault.interest_rate = 0;
+    vault.interest_rate = 750;
     vault.bump = ctx.bumps.vault;
     Ok(())
 }

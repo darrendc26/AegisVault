@@ -9,6 +9,6 @@ pub struct User {
     pub total_deposits: u64, // total WSOL deposited
     pub total_locked: u64,   // total WSOL locked
     pub total_borrowed: u64, // total USDC borrowed
-    pub last_updated: u64,   // last time the user's position was updated
+    pub last_updated: i64,   // last time the user's position was updated
     pub bump: u8,
 }
