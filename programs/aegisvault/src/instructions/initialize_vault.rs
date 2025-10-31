@@ -24,6 +24,7 @@ pub fn init_vault_handler(ctx: Context<InitializeVault>) -> Result<()> {
     let vault = &mut ctx.accounts.vault;
     vault.asset_mint = ctx.accounts.asset_mint.key();
     vault.collateral_mint = ctx.accounts.collateral_mint.key();
+    vault.collateralization_ratio = 15000; // 150%
     vault.total_wsol_deposits = 0;
     vault.total_wsol_borrowed = 0;
     vault.total_wsol_collateral = 0;

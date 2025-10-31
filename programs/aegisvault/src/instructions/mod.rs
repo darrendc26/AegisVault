@@ -9,6 +9,7 @@ pub mod update_interest;
 pub mod withdraw_usdc;
 pub mod withdraw_wsol;
 
+pub use borrow::*;
 pub use deposit_usdc::*;
 pub use deposit_wsol::*;
 pub use initialize_user::*;

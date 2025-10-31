@@ -19,4 +19,8 @@ pub enum ErrorCode {
 
     #[msg("Invalid Amount")]
     InvalidAmount,
+    #[msg("Insufficient Collateral")]
+    InsufficientCollateral,
+    #[msg("Insufficient Vault Liquidity")]
+    InsufficientVaultLiquidity,
 }
