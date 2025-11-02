@@ -36,7 +36,7 @@ pub mod aegisvault {
         withdraw_usdc_handler(ctx, amount)
     }
 
-    pub fn borrow_sol(ctx: Context<BorrowSol>, amount: u64) -> Result<()> {
-        borrow_sol_handler(ctx, amount)
-    }
+    // pub fn borrow_sol(ctx: Context<BorrowSol>, amount: u64) -> Result<()> {
+    //     borrow_sol_handler(ctx, amount)
+    // }
 }

@@ -1,7 +1,7 @@
 use crate::errors::ErrorCode;
 use crate::state::{user::User, vault::Vault};
 use anchor_lang::prelude::*;
-use anchor_spl::token::{self, Token, TokenAccount, Transfer};
+use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
 
 #[derive(Accounts)]
 pub struct DepositWsol<'info> {
@@ -18,7 +18,7 @@ pub struct DepositWsol<'info> {
 
     #[account(
         mut,
-        seeds = [b"vault".as_ref(), vault.asset_mint.as_ref(), vault.collateral_mint.as_ref()],
+        seeds = [b"vault".as_ref(), asset_mint.key().as_ref(), collateral_mint.key().as_ref()],
         bump = vault.bump,
     )]
     pub vault: Account<'info, Vault>,
@@ -36,7 +36,8 @@ pub struct DepositWsol<'info> {
         token::authority = vault,
     )]
     pub vault_wsol_account: Account<'info, TokenAccount>,
-
+    pub asset_mint: Account<'info, Mint>,
+    pub collateral_mint: Account<'info, Mint>,
     pub token_program: Program<'info, Token>,
 }
 

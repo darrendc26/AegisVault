@@ -44,7 +44,7 @@ pub fn deposit_usdc_handler(ctx: Context<DepositUsdc>, amount: u64) -> Result<()
     let user_account = &mut ctx.accounts.user_account;
     let vault = &mut ctx.accounts.vault;
 
-    // Transfer WSOL from user to vault
+    // Transfer USDC from user to vault
     let cpi_accounts = Transfer {
         from: ctx.accounts.user_usdc_account.to_account_info(),
         to: ctx.accounts.vault_usdc_account.to_account_info(),

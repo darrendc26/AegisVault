@@ -1,7 +1,7 @@
 use crate::errors::ErrorCode;
 use crate::state::{user::User, vault::Vault};
 use anchor_lang::prelude::*;
-use anchor_spl::token::{self, Token, TokenAccount, Transfer};
+use anchor_spl::token::{transfer, Token, TokenAccount, Transfer};
 
 #[derive(Accounts)]
 pub struct WithdrawWsol<'info> {
@@ -28,14 +28,14 @@ pub struct WithdrawWsol<'info> {
         token::mint = vault.asset_mint,
         token::authority = vault,
     )]
-    pub vault_wsol_account: Account<'info, TokenAccount>,
+    pub vault_wsol_account: Account<'info, TokenAccount>, // Use Anchor's Account wrapper
 
     #[account(
         mut,
         token::mint = vault.asset_mint,
         token::authority = user,
     )]
-    pub user_wsol_account: Account<'info, TokenAccount>,
+    pub user_wsol_account: Account<'info, TokenAccount>, // Use Anchor's Account wrapper
 
     pub token_program: Program<'info, Token>,
     pub system_program: Program<'info, System>,
@@ -44,6 +44,7 @@ pub struct WithdrawWsol<'info> {
 pub fn withdraw_wsol_handler(ctx: Context<WithdrawWsol>, amount: u64) -> Result<()> {
     let user_account = &mut ctx.accounts.user_account;
     let vault = &mut ctx.accounts.vault;
+
     // Check that user has enough WSOL deposited
     require!(
         amount <= user_account.total_wsol_deposits,
@@ -52,8 +53,8 @@ pub fn withdraw_wsol_handler(ctx: Context<WithdrawWsol>, amount: u64) -> Result<
 
     let signer_seeds: &[&[&[u8]]] = &[&[
         b"vault".as_ref(),
-        vault.asset_mint.as_ref(),
-        vault.collateral_mint.as_ref(),
+        &vault.asset_mint.to_bytes(),
+        &vault.collateral_mint.to_bytes(),
         &[vault.bump],
     ]];
 
@@ -69,7 +70,7 @@ pub fn withdraw_wsol_handler(ctx: Context<WithdrawWsol>, amount: u64) -> Result<
         cpi_accounts,
         signer_seeds,
     );
-    token::transfer(cpi_ctx, amount)?;
+    transfer(cpi_ctx, amount)?;
 
     // Update user data
     user_account.total_wsol_deposits = user_account
